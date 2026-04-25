@@ -117,9 +117,9 @@ export default function GroupChat() {
         )}
       </div>
 
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 no-scrollbar">
+      <div className="flex-1 flex flex-col overflow-y-auto p-4 space-y-4 no-scrollbar">
         {messages.length === 0 && (
-          <div className="flex justify-center items-center h-full">
+          <div className="flex justify-center items-center h-full mt-auto mb-auto">
             <div className="text-center">
               <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="text-ghost-muted mx-auto mb-4 opacity-50"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
               <p className="text-ghost-muted font-mono text-sm">[ GROUP_ENCRYPTED_AT_REST ]</p>
@@ -165,7 +165,7 @@ export default function GroupChat() {
           )
         })}
 
-        <div className="w-full pt-8 pb-2 flex justify-center">
+        <div className="w-full pt-8 pb-2 flex justify-center mt-auto">
           <div className="text-[10px] text-ghost-muted font-mono">
             created with ❤️ by <a href="https://github.com/yeahbitchscience" target="_blank" rel="noreferrer" className="text-ghost-green hover:underline">sanskar</a>
           </div>

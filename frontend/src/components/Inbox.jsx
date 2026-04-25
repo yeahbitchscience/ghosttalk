@@ -72,7 +72,7 @@ export default function Inbox() {
         </button>
       </div>
 
-      <div className="flex-1 overflow-y-auto no-scrollbar">
+      <div className="flex-1 flex flex-col overflow-y-auto no-scrollbar">
         {groups.length > 0 && (
           <div className="mb-6">
             <h2 className="px-4 pt-4 pb-2 text-[10px] font-mono text-ghost-muted uppercase tracking-widest bg-ghost-bg sticky top-0 z-0">
@@ -175,6 +175,13 @@ export default function Inbox() {
             })}
           </div>
         )}
+
+        {/* Watermark pushed to bottom */}
+        <div className="w-full pt-8 pb-4 mt-auto flex justify-center">
+          <div className="text-[10px] text-ghost-muted font-mono">
+            created with ❤️ by <a href="https://github.com/yeahbitchscience" target="_blank" rel="noreferrer" className="text-ghost-green hover:underline">sanskar</a>
+          </div>
+        </div>
       </div>
 
       {showCreateGroup && (

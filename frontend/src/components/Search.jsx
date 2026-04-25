@@ -74,7 +74,7 @@ export default function Search() {
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-4">
+      <div className="flex-1 flex flex-col overflow-y-auto p-4">
         {searchQuery.length > 2 && searchResults.length === 0 && !isSearching && (
           <div className="text-center text-ghost-muted mt-10 font-mono text-sm">
             [ NO_MATCHES_FOUND ]
@@ -126,6 +126,12 @@ export default function Search() {
               </div>
             );
           })}
+        </div>
+
+        <div className="w-full pt-8 pb-4 mt-auto flex justify-center">
+          <div className="text-[10px] text-ghost-muted font-mono">
+            created with ❤️ by <a href="https://github.com/yeahbitchscience" target="_blank" rel="noreferrer" className="text-ghost-green hover:underline">sanskar</a>
+          </div>
         </div>
       </div>
     </div>

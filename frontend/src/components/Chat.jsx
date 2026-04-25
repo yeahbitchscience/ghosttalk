@@ -187,9 +187,9 @@ export default function Chat() {
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 no-scrollbar">
+      <div className="flex-1 flex flex-col overflow-y-auto p-4 space-y-4 no-scrollbar">
         {messages.length === 0 && (
-          <div className="flex justify-center items-center h-full">
+          <div className="flex justify-center items-center h-full mt-auto mb-auto">
             <div className="text-center">
               <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="text-ghost-muted mx-auto mb-4 opacity-50"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
               <p className="text-ghost-muted font-mono text-sm">[ E2E_ENCRYPTION_ACTIVE ]</p>
@@ -247,7 +247,7 @@ export default function Chat() {
           )
         })}
         
-        <div className="w-full pt-8 pb-2 flex justify-center">
+        <div className="w-full pt-8 pb-2 flex justify-center mt-auto">
           <div className="text-[10px] text-ghost-muted font-mono">
             created with ❤️ by <a href="https://github.com/yeahbitchscience" target="_blank" rel="noreferrer" className="text-ghost-green hover:underline">sanskar</a>
           </div>
