@@ -164,6 +164,13 @@ export default function GroupChat() {
             </div>
           )
         })}
+
+        <div className="w-full pt-8 pb-2 flex justify-center">
+          <div className="text-[10px] text-ghost-muted font-mono">
+            created with ❤️ by <a href="https://github.com/yeahbitchscience" target="_blank" rel="noreferrer" className="text-ghost-green hover:underline">sanskar</a>
+          </div>
+        </div>
+
         <div ref={scrollRef} className="h-2" />
       </div>
 

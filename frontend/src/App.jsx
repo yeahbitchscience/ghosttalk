@@ -61,11 +61,6 @@ function App() {
           </Routes>
           {token && <BottomNav />}
         </div>
-
-        {/* Universal Watermark */}
-        <div className="absolute bottom-2 sm:bottom-4 text-[10px] sm:text-xs text-ghost-muted font-mono z-50 pointer-events-none drop-shadow-md">
-          created with ❤️ by <a href="https://github.com/yeahbitchscience" target="_blank" rel="noreferrer" className="text-ghost-green hover:text-white transition-colors pointer-events-auto">sanskar</a>
-        </div>
       </div>
     </Router>
   );
