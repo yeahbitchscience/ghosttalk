@@ -12,6 +12,14 @@ export default function Signup() {
 
   const handleSignup = async (e) => {
     e.preventDefault();
+    
+    // Password Strength Validation
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{8,}$/;
+    if (!passwordRegex.test(password)) {
+      setError('Password must be at least 8 characters long, and include an uppercase letter, a lowercase letter, a number, and a special character.');
+      return;
+    }
+
     setLoading(true);
     setError('');
     
