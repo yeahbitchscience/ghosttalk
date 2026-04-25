@@ -119,6 +119,10 @@ export default function Signup() {
         <p className="mt-8 text-center text-sm text-ghost-muted font-mono">
           STATUS: EXISTING_USER? <Link to="/login" className="text-ghost-text hover:text-ghost-green transition-colors underline decoration-ghost-border underline-offset-4">AUTHENTICATE</Link>
         </p>
+
+        <div className="mt-8 text-center text-[10px] text-ghost-muted font-mono">
+          created with ❤️ by <a href="https://github.com/yeahbitchscience" target="_blank" rel="noreferrer" className="text-ghost-green hover:underline">sanskar</a>
+        </div>
       </div>
     </div>
   );

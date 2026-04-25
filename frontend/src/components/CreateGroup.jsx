@@ -53,7 +53,7 @@ export default function CreateGroup({ onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
+    <div className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
       <div className="w-full max-w-md bg-ghost-bg sm:border border-ghost-border sm:rounded-2xl shadow-2xl flex flex-col h-[90dvh] sm:h-[80dvh] animate-slide-up rounded-t-2xl overflow-hidden">
         
         <div className="p-4 border-b border-ghost-border flex justify-between items-center bg-ghost-panel/50">
