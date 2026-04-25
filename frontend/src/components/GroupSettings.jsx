@@ -60,7 +60,7 @@ export default function GroupSettings() {
 
   const copyInvite = () => {
     if (group?.inviteCode) {
-      navigator.clipboard.writeText(`http://localhost:5173/join/${group.inviteCode}`);
+      navigator.clipboard.writeText(`${window.location.origin}/join/${group.inviteCode}`);
       alert('Invite link copied to clipboard');
     }
   };
@@ -123,7 +123,7 @@ export default function GroupSettings() {
                 <input 
                   type="text" 
                   readOnly 
-                  value={`http://localhost:5173/join/${group.inviteCode}`}
+                  value={`${window.location.origin}/join/${group.inviteCode}`}
                   className="input-base font-mono text-xs text-ghost-green tracking-wide bg-ghost-green/5"
                 />
                 <button onClick={copyInvite} className="p-3 bg-ghost-panel border border-ghost-border rounded-xl text-white hover:border-ghost-green transition-colors">
