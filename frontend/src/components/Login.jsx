@@ -21,7 +21,7 @@ export default function Login({ setToken }) {
     setError('');
     
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
         username, password, totpToken
       });
       
@@ -49,7 +49,7 @@ export default function Login({ setToken }) {
     reader.onload = async (event) => {
       try {
         const tokenStr = event.target.result;
-        await axios.post('http://localhost:5000/api/auth/recover', {
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/recover`, {
           username, recoveryToken: tokenStr, newPassword
         });
         alert('Password reset successfully. You can now login.');

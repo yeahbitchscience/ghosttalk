@@ -18,7 +18,7 @@ export default function Profile() {
 
   const fetchProfile = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/users/profile', {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/profile`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUser(res.data);
@@ -29,7 +29,7 @@ export default function Profile() {
 
   const updatePrivacy = async (setting) => {
     try {
-      const res = await axios.put('http://localhost:5000/api/users/privacy', { privacySetting: setting }, {
+      const res = await axios.put(`${import.meta.env.VITE_API_URL}/api/users/privacy`, { privacySetting: setting }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUser({ ...user, privacySetting: res.data.privacySetting });
@@ -42,7 +42,7 @@ export default function Profile() {
 
   const setup2FA = async () => {
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/setup-2fa', {}, {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/setup-2fa`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setQrCode(`${res.data.secret}`);
@@ -53,7 +53,7 @@ export default function Profile() {
 
   const verify2FA = async () => {
     try {
-      await axios.post('http://localhost:5000/api/auth/verify-2fa', { token: totpToken }, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/verify-2fa`, { token: totpToken }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUser({ ...user, totpEnabled: true });

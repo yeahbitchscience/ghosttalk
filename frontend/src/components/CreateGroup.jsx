@@ -18,7 +18,7 @@ export default function CreateGroup({ onClose }) {
       return;
     }
     try {
-      const res = await axios.get(`http://localhost:5000/api/users/search?username=${q}`, {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/search?username=${q}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setSearchResults(res.data);
@@ -38,7 +38,7 @@ export default function CreateGroup({ onClose }) {
   const handleCreate = async () => {
     if (!name.trim()) return;
     try {
-      const res = await axios.post('http://localhost:5000/api/group/create', {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/group/create`, {
         name: name.trim(),
         type,
         members: selectedMembers.map(m => m._id)

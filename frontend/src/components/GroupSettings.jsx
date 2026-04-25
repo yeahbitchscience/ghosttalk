@@ -15,7 +15,7 @@ export default function GroupSettings() {
 
   const fetchGroupInfo = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/group/${groupId}/info`, {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/group/${groupId}/info`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setGroup(res.data);
@@ -27,7 +27,7 @@ export default function GroupSettings() {
 
   const updateVisibility = async (type) => {
     try {
-      await axios.patch(`http://localhost:5000/api/group/${groupId}/visibility`, { type }, {
+      await axios.patch(`${import.meta.env.VITE_API_URL}/api/group/${groupId}/visibility`, { type }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchGroupInfo();
@@ -38,7 +38,7 @@ export default function GroupSettings() {
 
   const generateInvite = async () => {
     try {
-      await axios.post(`http://localhost:5000/api/group/${groupId}/invite/generate`, {}, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/group/${groupId}/invite/generate`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchGroupInfo();
@@ -49,7 +49,7 @@ export default function GroupSettings() {
 
   const revokeInvite = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/group/${groupId}/invite/revoke`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/group/${groupId}/invite/revoke`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchGroupInfo();

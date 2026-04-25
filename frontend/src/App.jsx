@@ -30,7 +30,7 @@ function App() {
     const { inviteCode } = useParams();
     useEffect(() => {
       if (!token) return;
-      axios.get(`http://localhost:5000/api/group/join/${inviteCode}`, {
+      axios.get(`${import.meta.env.VITE_API_URL}/api/group/join/${inviteCode}`, {
         headers: { Authorization: `Bearer ${token}` }
       }).then(res => {
         window.location.href = `/group/${res.data.groupId}`;

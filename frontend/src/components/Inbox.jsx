@@ -18,7 +18,7 @@ export default function Inbox() {
   useEffect(() => {
     fetchConversationsAndGroups();
     
-    const socket = io('http://localhost:5000', { auth: { token } });
+    const socket = io(import.meta.env.VITE_API_URL, { auth: { token } });
     socket.on('new_message_alert', () => fetchConversationsAndGroups());
     socket.on('receive_group_message', () => fetchConversationsAndGroups());
     
@@ -27,7 +27,7 @@ export default function Inbox() {
 
   const fetchConversationsAndGroups = async () => {
     try {
-      const resConv = await axios.get('http://localhost:5000/api/messages/conversations', {
+      const resConv = await axios.get(`${import.meta.env.VITE_API_URL}/api/messages/conversations`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -44,7 +44,7 @@ export default function Inbox() {
       }));
       setConversations(processed);
 
-      const resGroups = await axios.get('http://localhost:5000/api/group/user/all', {
+      const resGroups = await axios.get(`${import.meta.env.VITE_API_URL}/api/group/user/all`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setGroups(resGroups.data);

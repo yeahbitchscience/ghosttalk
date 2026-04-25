@@ -17,10 +17,10 @@ export default function Search() {
     if (q.length > 2) {
       setIsSearching(true);
       try {
-        const res = await axios.get(`http://localhost:5000/api/users/search?username=${q}`, {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/search?username=${q}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
-        const resGroups = await axios.get(`http://localhost:5000/api/group/search/public?q=${q}`, {
+        const resGroups = await axios.get(`${import.meta.env.VITE_API_URL}/api/group/search/public?q=${q}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         const combined = [
@@ -40,7 +40,7 @@ export default function Search() {
 
   const startChat = async (targetUserId) => {
     try {
-      const res = await axios.post('http://localhost:5000/api/messages/conversations', { targetUserId }, {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/messages/conversations`, { targetUserId }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       navigate(`/chat/${res.data._id}`);

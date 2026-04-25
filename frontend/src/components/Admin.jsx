@@ -16,7 +16,7 @@ export default function Admin() {
 
   const fetchLogs = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/admin/logs', {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/logs`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setLogs(res.data);

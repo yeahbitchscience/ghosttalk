@@ -21,7 +21,7 @@ export default function Chat() {
   const currentUser = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
-    socketRef.current = io('http://localhost:5000', {
+    socketRef.current = io(import.meta.env.VITE_API_URL, {
       auth: { token }
     });
 
@@ -59,7 +59,7 @@ export default function Chat() {
   }, [messages]);
 
   const fetchConversationAndMessages = async () => {
-    const resMsg = await axios.get(`http://localhost:5000/api/messages/${conversationId}`, {
+    const resMsg = await axios.get(`${import.meta.env.VITE_API_URL}/api/messages/${conversationId}`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     
@@ -76,7 +76,7 @@ export default function Chat() {
     }));
     setMessages(processed);
     
-    const resConvList = await axios.get('http://localhost:5000/api/messages/conversations', { headers: { Authorization: `Bearer ${token}` } });
+    const resConvList = await axios.get(`${import.meta.env.VITE_API_URL}/api/messages/conversations`, { headers: { Authorization: `Bearer ${token}` } });
     const conv = resConvList.data.find(c => c._id === conversationId);
     if (conv) {
       const other = conv.participants.find(p => p._id !== currentUser.id);
@@ -84,7 +84,7 @@ export default function Chat() {
       const me = conv.participants.find(p => p._id === currentUser.id);
       if (me) setMyPublicKey(me.publicKey);
       
-      const resBlocked = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/users/blocked`, { headers: { Authorization: `Bearer ${token}` } });
+      const resBlocked = await axios.get(`${import.meta.env.VITE_API_URL || import.meta.env.VITE_API_URL}/api/users/blocked`, { headers: { Authorization: `Bearer ${token}` } });
       if (resBlocked.data.some(u => u._id === other._id)) {
         setIsBlocked(true);
       }
@@ -95,10 +95,10 @@ export default function Chat() {
     if (!otherUser) return;
     try {
       if (isBlocked) {
-        await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/users/unblock/${otherUser._id}`, {}, { headers: { Authorization: `Bearer ${token}` } });
+        await axios.post(`${import.meta.env.VITE_API_URL || import.meta.env.VITE_API_URL}/api/users/unblock/${otherUser._id}`, {}, { headers: { Authorization: `Bearer ${token}` } });
         setIsBlocked(false);
       } else {
-        await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/users/block/${otherUser._id}`, {}, { headers: { Authorization: `Bearer ${token}` } });
+        await axios.post(`${import.meta.env.VITE_API_URL || import.meta.env.VITE_API_URL}/api/users/block/${otherUser._id}`, {}, { headers: { Authorization: `Bearer ${token}` } });
         setIsBlocked(true);
       }
     } catch (err) {
@@ -115,7 +115,7 @@ export default function Chat() {
       const formData = new FormData();
       formData.append('file', file);
       try {
-        const resUpload = await axios.post('http://localhost:5000/api/messages/upload', formData, {
+        const resUpload = await axios.post(`${import.meta.env.VITE_API_URL}/api/messages/upload`, formData, {
           headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' }
         });
         attachmentData = resUpload.data;
@@ -152,7 +152,7 @@ export default function Chat() {
 
   const handleDelete = async (messageId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/messages/${messageId}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/messages/${messageId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setMessages(prev => prev.filter(m => m._id !== messageId));
@@ -212,9 +212,9 @@ export default function Chat() {
                   {msg.attachment && (
                     <div className="mb-2">
                       {msg.attachment.mimeType.startsWith('image/') ? (
-                        <img src={`http://localhost:5000${msg.attachment.url}`} alt="attachment" className="rounded-xl max-h-60 border border-ghost-border" />
+                        <img src={`${import.meta.env.VITE_API_URL}${msg.attachment.url}`} alt="attachment" className="rounded-xl max-h-60 border border-ghost-border" />
                       ) : (
-                        <a href={`http://localhost:5000${msg.attachment.url}`} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-ghost-green bg-ghost-green/10 p-2 rounded-xl border border-ghost-green/20 font-mono text-xs">
+                        <a href={`${import.meta.env.VITE_API_URL}${msg.attachment.url}`} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-ghost-green bg-ghost-green/10 p-2 rounded-xl border border-ghost-green/20 font-mono text-xs">
                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
                           {msg.attachment.filename}
                         </a>
